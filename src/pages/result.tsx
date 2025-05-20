@@ -13,13 +13,21 @@ const leadershipStyles = [
 const getStyleDescription = (style: string) => {
   switch (style) {
     case 'Delegating':
-      return `Pengikut: Kompetensi tinggi, komitmen tinggi / mampu dan mau atau termotivasi.\nPemimpin: Fokus tugas rendah, fokus hubungan rendah.\nKetika pengikut mampu dan termotivasi, pemimpin dapat menyerahkan tugas sepenuhnya kepada mereka, dan hanya perlu memantau dari jauh untuk memastikan semuanya berjalan sesuai rencana. Pengikut pada tingkat ini hampir tidak memerlukan dukungan atau pujian yang sering, meskipun pengakuan tetap akan dihargai.`;
+      return `Pengikut: Kompetensi tinggi, komitmen tinggi / mampu dan mau atau termotivasi.
+Pemimpin: Fokus tugas rendah, fokus hubungan rendah.
+Karakteristik: Ketika pengikut mampu dan termotivasi, pemimpin dapat menyerahkan tugas sepenuhnya kepada mereka, dan hanya perlu memantau dari jauh untuk memastikan semuanya berjalan sesuai rencana. Pengikut pada tingkat ini hampir tidak memerlukan dukungan atau pujian yang sering, meskipun pengakuan tetap akan dihargai.`;
     case 'Telling':
-      return 'Pengikut: Kompetensi rendah, komitmen tinggi / belum mampu tapi termotivasi.\nPemimpin: Fokus tugas tinggi, fokus hubungan rendah.\nKarakteristik: Pemimpin memberi instruksi yang sangat jelas, mengarahkan langkah demi langkah, dan mengawasi secara ketat karena pengikut belum punya kemampuan atau pengalaman yang cukup. Pemimpin harus tegas dan mengontrol agar tugas dapat diselesaikan dengan benar.';
+      return `Pengikut: Kompetensi rendah, komitmen tinggi / belum mampu tapi termotivasi.
+Pemimpin: Fokus tugas tinggi, fokus hubungan rendah.
+Karakteristik: Pemimpin memberi instruksi yang sangat jelas, mengarahkan langkah demi langkah, dan mengawasi secara ketat karena pengikut belum punya kemampuan atau pengalaman yang cukup. Pemimpin harus tegas dan mengontrol agar tugas dapat diselesaikan dengan benar.`;
     case 'Selling':
-      return 'Pengikut: Kompetensi rendah, komitmen rendah / belum mampu dan belum termotivasi.\nPemimpin: Fokus tugas tinggi, fokus hubungan tinggi.\nKarakteristik: Pemimpin masih harus mengarahkan secara jelas, tapi juga memberikan dukungan emosional dan motivasi untuk meningkatkan semangat dan keterampilan pengikut. Pemimpin menjelaskan mengapa tugas itu penting dan mengajak berdiskusi untuk meningkatkan komitmen.';
+      return `Pengikut: Kompetensi rendah, komitmen rendah / belum mampu dan belum termotivasi.
+Pemimpin: Fokus tugas tinggi, fokus hubungan tinggi.
+Karakteristik: Pemimpin masih harus mengarahkan secara jelas, tapi juga memberikan dukungan emosional dan motivasi untuk meningkatkan semangat dan keterampilan pengikut. Pemimpin menjelaskan mengapa tugas itu penting dan mengajak berdiskusi untuk meningkatkan komitmen.`;
     case 'Participating':
-      return 'Pengikut: Kompetensi tinggi, komitmen rendah / mampu tapi kurang termotivasi.\nPemimpin: Fokus tugas rendah, fokus hubungan tinggi.\nKarakteristik: Pemimpin mengurangi arahan teknis tapi lebih banyak mendukung secara emosional dan berkolaborasi dengan pengikut. Pemimpin membantu mengatasi hambatan motivasi dan mendengarkan masukan pengikut agar mereka lebih bersemangat.';
+      return `Pengikut: Kompetensi tinggi, komitmen rendah / mampu tapi kurang termotivasi.
+Pemimpin: Fokus tugas rendah, fokus hubungan tinggi.
+Karakteristik: Pemimpin mengurangi arahan teknis tapi lebih banyak mendukung secara emosional dan berkolaborasi dengan pengikut. Pemimpin membantu mengatasi hambatan motivasi dan mendengarkan masukan pengikut agar mereka lebih bersemangat.`;
     default:
       return '-';
   }
@@ -179,70 +187,83 @@ const Result: React.FC = () => {
         ) : assessments.length === 0 ? (
           <p className="text-center text-gray-500 italic">Tidak ada data yang sesuai filter.</p>
         ) : (
-          <div className="overflow-x-auto overflow-y-auto rounded-lg border border-gray-200 shadow">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50 sticky top-0 z-10">
-                <tr>
-                  {[
-                    'NIK',
-                    'Nama',
-                    'Unit Kerja',
-                    'Tanggal',
-                    'Gaya Kepemimpinan',
-                    'Skor',
-                    'Deskripsi',
-                  ].map(header => (
-                    <th
-                      key={header}
-                      className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                    >
-                      {header}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {assessments.map(a => (
-                  <tr key={`${a.nik}-${a.created_at}`}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {a.nik}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{a.nama}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                      {a.unit_kerja}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                      {new Date(a.created_at).toLocaleDateString('id-ID', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                      })}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span
-                        className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${
-                          {
-                            Telling: 'bg-red-100 text-red-800',
-                            Selling: 'bg-yellow-100 text-yellow-800',
-                            Participating: 'bg-blue-100 text-blue-800',
-                            Delegating: 'bg-green-100 text-green-800',
-                          }[a.leadership_style] || 'bg-gray-100 text-gray-800'
-                        }`}
+          <div className="overflow-hidden rounded-lg border border-gray-200 shadow">
+            <div className="max-h-[600px] overflow-y-auto">
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50 sticky top-0 z-10">
+                    <tr>
+                      {[
+                        'NIK',
+                        'Nama',
+                        'Unit Kerja',
+                        'Tanggal',
+                        'Gaya Kepemimpinan',
+                        'Skor',
+                        'Deskripsi',
+                      ].map(header => (
+                        <th
+                          key={header}
+                          className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider bg-gray-50"
+                        >
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {assessments.map(a => (
+                      <tr
+                        key={`${a.nik}-${a.created_at}`}
+                        className="hover:bg-gray-50 transition-colors"
                       >
-                        {a.leadership_style}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                      Telling: {a.result.telling} | Selling: {a.result.selling} | Participating:{' '}
-                      {a.result.participating} | Delegating: {a.result.delegating}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-700 whitespace-pre-line">
-                      {getStyleDescription(a.leadership_style)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {a.nik}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {a.nama}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                          {a.unit_kerja}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                          {new Date(a.created_at).toLocaleDateString('id-ID', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                          })}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span
+                            className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${
+                              {
+                                Telling: 'bg-red-100 text-red-800',
+                                Selling: 'bg-yellow-100 text-yellow-800',
+                                Participating: 'bg-blue-100 text-blue-800',
+                                Delegating: 'bg-green-100 text-green-800',
+                              }[a.leadership_style] || 'bg-gray-100 text-gray-800'
+                            }`}
+                          >
+                            {a.leadership_style}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-700">
+                          <div className="flex flex-col space-y-1">
+                            <span>Telling: {a.result.telling}</span>
+                            <span>Selling: {a.result.selling}</span>
+                            <span>Participating: {a.result.participating}</span>
+                            <span>Delegating: {a.result.delegating}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-700 whitespace-pre-line min-w-[400px]">
+                          {getStyleDescription(a.leadership_style)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         )}
       </div>
