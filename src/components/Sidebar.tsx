@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { ClipboardList, BarChart2 } from 'lucide-react';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen }: { isOpen: boolean }) {
   const router = useRouter();
   const { user } = useAuth();
 
@@ -17,7 +17,11 @@ export default function Sidebar() {
       ];
 
   return (
-    <aside className="w-64 bg-white shadow-lg border-r hidden md:block">
+    <aside
+      className={`transition-all duration-300 bg-white shadow-lg border-r ${
+        isOpen ? 'w-64' : 'w-0 md:w-16'
+      } overflow-hidden md:block`}
+    >
       <nav className="p-6 space-y-4">
         {menuItems.map((item) => (
           <Link
@@ -31,7 +35,7 @@ export default function Sidebar() {
               }`}
           >
             {item.icon}
-            <span>{item.label}</span>
+            {isOpen && <span>{item.label}</span>}
           </Link>
         ))}
       </nav>

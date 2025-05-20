@@ -6,7 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 
 export default function Home() {
   const router = useRouter();
-  const { user } = useAuth();
+  useAuth();
 
   const handleStartAssessment = () => {
     router.push('/assessment');
@@ -27,7 +27,7 @@ export default function Home() {
                 Selamat Datang 👋
               </h1>
               <p className="text-lg text-gray-600 mt-2">
-                Sistem Asesmen <span className="text-blue-600 font-semibold">Situational Leadership</span> PT. XYZ
+                Layanan Asesmen <span className="text-blue-600 font-semibold">Situational Leadership</span> PT. Surveyor Indonesia
               </p>
             </div>
 

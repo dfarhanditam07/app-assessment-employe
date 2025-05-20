@@ -1,17 +1,25 @@
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
-import { LogOut } from 'lucide-react';
+import { LogOut, Menu } from 'lucide-react';
 import Link from 'next/link';
 
-export default function Header() {
+export default function Header({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const router = useRouter();
   const { user, logout } = useAuth();
 
   return (
     <header className="flex justify-between items-center bg-blue-600 px-6 py-4 text-white shadow-md">
-      <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
-        PT. Surveyor Indonesia
-      </Link>
+      <div className="flex items-center gap-4">
+        {user && (
+          <button onClick={onToggleSidebar} className="md:hidden block">
+            <Menu size={24} />
+          </button>
+        )}
+        <Link href="/" className="text-2xl font-bold">
+          PT. Surveyor Indonesia
+        </Link>
+      </div>
+
       {user ? (
         <div className="flex items-center gap-4">
           <span className="text-sm">
