@@ -13,7 +13,7 @@ export default function Sidebar() {
         { href: '/result', label: 'Hasil Assessment', icon: <ClipboardList size={18} /> },
       ]
     : [
-        { href: '/assessment', label: 'Assessment', icon: <ClipboardList size={18} /> },
+        { href: '/', label: 'Information', icon: <ClipboardList size={18} /> },
       ];
 
   return (

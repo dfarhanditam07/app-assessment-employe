@@ -12,17 +12,27 @@ interface Answer {
 
 export default function AssessmentPage() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [initialized, setInitialized] = useState(false);
 
   const totalQuestions = questions.length;
   const progress = (answers.length / totalQuestions) * 100;
 
   useEffect(() => {
-    if (!user) router.replace('/login');
-  }, [user, router]);
+    // Hanya jalankan redirect jika loading sudah selesai dan user tidak ada
+    if (!loading) {
+      if (!user) {
+        console.log('User tidak ditemukan, redirect ke login');
+        router.replace('/login');
+      } else {
+        // Tandai bahwa komponen sudah diinisialisasi dengan data user
+        setInitialized(true);
+      }
+    }
+  }, [user, loading, router]);
 
   const handleAnswer = (questionId: number, answer: 'A' | 'B' | 'C' | 'D') => {
     setAnswers(prev =>
@@ -51,7 +61,7 @@ export default function AssessmentPage() {
       return;
     }
 
-    setLoading(true);
+    setSubmitting(true);
     try {
       const result = calculateResult();
       const res = await fetch('/api/assessments', {
@@ -83,11 +93,25 @@ export default function AssessmentPage() {
       console.error(err);
       alert('Gagal menyimpan data. Coba lagi.');
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
   const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+  // Tampilkan loading state jika masih loading atau belum diinisialisasi
+  if (loading || !initialized) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center h-screen">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Memuat...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   const currentQuestion = questions[currentIndex];
 
@@ -133,10 +157,10 @@ export default function AssessmentPage() {
           {currentIndex === totalQuestions - 1 ? (
             <button
               onClick={handleSubmit}
-              disabled={loading}
+              disabled={submitting}
               className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md"
             >
-              {loading ? 'Menyimpan...' : 'Selesai'}
+              {submitting ? 'Menyimpan...' : 'Selesai'}
             </button>
           ) : (
             <button

@@ -21,6 +21,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       role: string;
     };
 
+    if (!decoded.nik || !decoded.nama || !decoded.role) {
+      return res.status(401).json({ message: 'Data token tidak lengkap' });
+    }
+
     return res.status(200).json(decoded);
   } catch (error) {
     console.error('Auth check error:', error);

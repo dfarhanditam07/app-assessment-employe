@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import { motion } from 'framer-motion';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Login() {
   const router = useRouter();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({ nik: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,7 +27,11 @@ export default function Login() {
 
       if (!res.ok) throw new Error(data.message || 'Terjadi kesalahan');
 
-      router.push(data.user.role === 'admin' ? '/dashboard' : '/assessment');
+      // Simpan data pengguna di sessionStorage melalui AuthContext
+      login(data.user);
+
+      // Redirect berdasarkan role
+      router.push(data.user.role === 'admin' ? '/dashboard' : '/');
     } catch (err: any) {
       setError(err.message);
     } finally {

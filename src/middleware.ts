@@ -6,6 +6,9 @@ export function middleware(request: NextRequest) {
   const role = request.cookies.get('role')?.value;
   const { pathname } = request.nextUrl;
 
+  console.log('token:', token);
+  console.log('role:', role);
+  console.log('pathname:', pathname);
   // Jika belum login, wajib ke login dulu kecuali sudah di halaman login
   if (!token) {
     if (pathname !== '/login') {
@@ -25,8 +28,8 @@ export function middleware(request: NextRequest) {
 
   // Role: admin
   if (role === 'admin') {
-    // Admin hanya boleh akses dashboard dan result
-    if (!pathname.startsWith('/dashboard') && !pathname.startsWith('/result')) {
+    // Admin hanya boleh akses dashboard dan assessment
+    if (!pathname.startsWith('/dashboard') && !pathname.startsWith('/assessment')) {
       return NextResponse.redirect(new URL('/dashboard', request.url));
     }
   }
@@ -44,5 +47,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/result/:path*', '/assessment/:path*', '/', '/login'],
+  matcher: ['/', '/login', '/dashboard/:path*', '/assessment/:path*']
 };

@@ -44,11 +44,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict' as const,
-      maxAge: 60 * 60 * 24, // 1 day
+      maxAge: 60 * 60 * 24,
       path: '/',
-    };
+    };    
 
-    res.setHeader('Set-Cookie', serialize('token', token, cookieOptions));
+    res.setHeader('Set-Cookie', [
+      serialize('token', token, cookieOptions),
+      serialize('role', user.role, cookieOptions),
+    ]);
+    
 
     return res.status(200).json({ message: 'Login berhasil', user: payload });
   } catch (error) {
