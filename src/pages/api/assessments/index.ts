@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '@/lib/mongodb';
+import { Filter } from 'mongodb';
 
 export interface Assessment {
   nik: string;
@@ -26,10 +27,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (req.method) {
       case 'GET': {
         const { nik, style, startDate, endDate } = req.query;
-        const query: Record<string, any> = {};
+        const query: Filter<Assessment> = {};
 
         if (nik && typeof nik === 'string') query.nik = nik;
-        if (style && typeof style === 'string') query.leadership_style = style;
+        if (style && typeof style === 'string')
+          query.leadership_style = style as Assessment['leadership_style'];
 
         if (startDate || endDate) {
           query.created_at = {};

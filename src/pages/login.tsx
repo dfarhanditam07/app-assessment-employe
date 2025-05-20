@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Image from 'next/image';
 import Layout from '@/components/Layout';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
@@ -29,8 +30,8 @@ export default function Login() {
 
       login(data.user);
       router.push(data.user.role === 'admin' ? '/dashboard' : '/');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Terjadi kesalahan');
     } finally {
       setLoading(false);
     }
@@ -55,7 +56,9 @@ export default function Login() {
             className="w-full max-w-md bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-10"
           >
             <div className="flex flex-col items-center mb-6">
-              <img src="/images/logo.png" alt="Logo" className="w-16 h-16 mb-2" />
+              <div className="relative w-16 h-16 mb-2">
+                <Image src="/images/logo.png" alt="Logo" fill className="object-contain" priority />
+              </div>
               <h2 className="text-2xl font-bold text-blue-800 text-center">Login</h2>
             </div>
 

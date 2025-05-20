@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Layout from '../components/Layout';
 import { Assessment } from '../models/Assessment';
 
@@ -37,7 +37,7 @@ const Result: React.FC = () => {
   });
 
   // Fungsi ambil data dari API dengan filter
-  const fetchAssessments = async () => {
+  const fetchAssessments = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -59,12 +59,12 @@ const Result: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   // Panggil fetch saat filters berubah
   useEffect(() => {
     fetchAssessments();
-  }, [filters]);
+  }, [fetchAssessments]);
 
   // Fungsi export data ke CSV
   const handleExportCSV = () => {

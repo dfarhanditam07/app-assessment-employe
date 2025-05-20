@@ -1,10 +1,8 @@
-import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
 import { LogOut, Menu } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Header({ onToggleSidebar }: { onToggleSidebar: () => void }) {
-  const router = useRouter();
   const { user, logout } = useAuth();
 
   return (
