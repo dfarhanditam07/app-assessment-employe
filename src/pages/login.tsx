@@ -37,7 +37,7 @@ export default function Login() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white py-16 px-6">
         <div className="w-full max-w-md bg-white shadow-xl rounded-xl p-8">
           <h2 className="text-2xl font-bold text-center text-blue-700 mb-6">
-            Login Situational Leadership
+            Login
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
