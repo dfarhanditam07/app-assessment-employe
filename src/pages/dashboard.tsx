@@ -67,11 +67,11 @@ const Dashboard: React.FC = () => {
     (averageScores.avgTelling + averageScores.avgSelling +
       averageScores.avgParticipating + averageScores.avgDelegating) / 4
   );
-
+  
   const dominantStyle =
     styleDistribution.length > 0
       ? styleDistribution.reduce((a, b) => (a.count > b.count ? a : b))._id
-      : '-';
+      : '-';  
 
   return (
     <Layout>

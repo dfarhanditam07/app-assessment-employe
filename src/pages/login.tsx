@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
+import { motion } from 'framer-motion';
 
 export default function Login() {
   const router = useRouter();
@@ -34,13 +35,18 @@ export default function Login() {
 
   return (
     <Layout>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white py-16 px-6">
-        <div className="w-full max-w-md bg-white shadow-xl rounded-xl p-8">
-          <h2 className="text-2xl font-bold text-center text-blue-700 mb-6">
-            Login
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 flex items-center justify-center py-12 px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-10"
+        >
+          <h2 className="text-3xl font-extrabold text-blue-700 text-center mb-8">
+            Login Sistem Asesmen
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="nik" className="block text-sm font-medium text-gray-700">
                 NIK
@@ -50,7 +56,7 @@ export default function Login() {
                 name="nik"
                 type="text"
                 required
-                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-800"
+                className="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-800"
                 placeholder="Masukkan NIK"
                 value={formData.nik}
                 onChange={(e) => setFormData({ ...formData, nik: e.target.value })}
@@ -66,7 +72,7 @@ export default function Login() {
                 name="password"
                 type="password"
                 required
-                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-800"
+                className="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-800"
                 placeholder="Masukkan password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -80,12 +86,12 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center py-2 px-4 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition disabled:opacity-60"
+              className="w-full flex justify-center py-3 px-6 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition disabled:opacity-60"
             >
               {loading ? 'Loading...' : 'Login'}
             </button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </Layout>
   );

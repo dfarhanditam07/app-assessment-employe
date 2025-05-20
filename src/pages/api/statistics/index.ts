@@ -61,21 +61,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).json({
       totalAssessments: total,
-      leadershipStyles: styleStats.map(style => ({
-        style: style._id,
+      styleDistribution: styleStats.map(style => ({
+        _id: style._id,
         count: style.count
       })),
       averageScores: {
-        telling: Number(score.telling.toFixed(2)),
-        selling: Number(score.selling.toFixed(2)),
-        participating: Number(score.participating.toFixed(2)),
-        delegating: Number(score.delegating.toFixed(2))
+        avgTelling: Number(score.telling.toFixed(2)),
+        avgSelling: Number(score.selling.toFixed(2)),
+        avgParticipating: Number(score.participating.toFixed(2)),
+        avgDelegating: Number(score.delegating.toFixed(2)),
       },
       assessmentsByDate: weeklyStats.map(item => ({
-        date: item._id,
-        count: item.count
+        _id: item._id,
+        count: item.count,
       }))
     });
+    
   } catch (error) {
     console.error('Dashboard Stats Error:', error);
     return res.status(500).json({ error: 'Internal Server Error' });

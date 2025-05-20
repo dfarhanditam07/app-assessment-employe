@@ -22,12 +22,12 @@ export default function AssessmentPage() {
 
   useEffect(() => {
     if (!user) router.replace('/login');
-  }, [user]);
+  }, [user, router]);
 
   const handleAnswer = (questionId: number, answer: 'A' | 'B' | 'C' | 'D') => {
     setAnswers(prev =>
       prev.some(a => a.questionId === questionId)
-        ? prev.map(a => a.questionId === questionId ? { ...a, answer } : a)
+        ? prev.map(a => (a.questionId === questionId ? { ...a, answer } : a))
         : [...prev, { questionId, answer }]
     );
   };
@@ -36,18 +36,19 @@ export default function AssessmentPage() {
     const count = { telling: 0, selling: 0, participating: 0, delegating: 0 };
     answers.forEach(({ answer }) => {
       if (answer === 'A') count.telling++;
-      if (answer === 'B') count.selling++;
-      if (answer === 'C') count.participating++;
-      if (answer === 'D') count.delegating++;
+      else if (answer === 'B') count.selling++;
+      else if (answer === 'C') count.participating++;
+      else if (answer === 'D') count.delegating++;
     });
 
-    const dominantStyle = Object.entries(count).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+    const dominantStyle = Object.entries(count).reduce((a, b) => (a[1] > b[1] ? a : b))[0];
     return { ...count, dominantStyle };
   };
 
   const handleSubmit = async () => {
     if (answers.length < totalQuestions) {
-      return alert('Harap jawab semua pertanyaan.');
+      alert('Harap jawab semua pertanyaan.');
+      return;
     }
 
     setLoading(true);
@@ -59,22 +60,34 @@ export default function AssessmentPage() {
         body: JSON.stringify({
           nik: user?.nik,
           nama: user?.nama,
-          unit_kerja: user?.unit_kerja,
-          jawaban: answers,
-          result,
-          leadership_style: result.dominantStyle,
-          created_at: new Date().toISOString()
+          unit_kerja: user?.unit_kerja || '',
+          jawaban: answers.map(a => a.answer),
+          result: {
+            telling: result.telling,
+            selling: result.selling,
+            participating: result.participating,
+            delegating: result.delegating,
+            dominantStyle: result.dominantStyle
+          },
+          leadership_style: capitalize(result.dominantStyle),
+          created_at: new Date()
         }),
       });
 
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.error || 'Failed to save assessment');
+      }
       router.push('/result');
     } catch (err) {
+      console.error(err);
       alert('Gagal menyimpan data. Coba lagi.');
     } finally {
       setLoading(false);
     }
   };
+
+  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
   const currentQuestion = questions[currentIndex];
 
@@ -98,16 +111,16 @@ export default function AssessmentPage() {
           </p>
         </div>
 
-        {/* Soal */}
+        {/* Question */}
         <div className="bg-white shadow rounded-lg p-5 mb-6">
           <AssessmentQuestion
             question={currentQuestion}
             selectedAnswer={answers.find(a => a.questionId === currentQuestion.id)?.answer}
-            onAnswer={(answer) => handleAnswer(currentQuestion.id, answer)}
+            onAnswer={answer => handleAnswer(currentQuestion.id, answer)}
           />
         </div>
 
-        {/* Navigasi */}
+        {/* Navigation */}
         <div className="flex justify-between">
           <button
             onClick={() => setCurrentIndex(prev => Math.max(prev - 1, 0))}
