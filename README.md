@@ -1,24 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## System Overview
+
+This project is a web application built using Next.js, designed to facilitate employee assessments. It includes features for managing assessments, viewing results, and user authentication.
 
 ## Getting Started
 
-First, run the development server:
+To clone the repository and set up the project locally, follow these steps:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-repo/app-assessment-employe.git
+```
+
+2. Navigate into the project directory:
+
+```bash
+cd app-assessment-employe
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## User Accounts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Admin Account
+- NIK: "3275110708020015"
+- Password: "admin123"
+
+### User Account
+- NIK: "3201051601234569"
+- Password: "Dimas123"
 
 ## Learn More
 
