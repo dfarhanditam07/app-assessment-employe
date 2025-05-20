@@ -20,4 +20,4 @@ export interface AssessmentResult {
   participating: number;
   delegating: number;
   dominant_style: string;
-} 
+}

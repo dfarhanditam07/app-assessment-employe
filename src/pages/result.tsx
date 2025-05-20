@@ -71,7 +71,7 @@ const Result: React.FC = () => {
     if (assessments.length === 0) return;
 
     const headers = ['NIK', 'Nama', 'Unit Kerja', 'Tanggal', 'Gaya Kepemimpinan', 'Skor'];
-    const rows = assessments.map((a) => [
+    const rows = assessments.map(a => [
       a.nik,
       a.nama,
       a.unit_kerja,
@@ -80,15 +80,12 @@ const Result: React.FC = () => {
       `T:${a.result.telling} S:${a.result.selling} P:${a.result.participating} D:${a.result.delegating}`,
     ]);
 
-    const csvContent =
-      [headers, ...rows]
-        .map((e) => e.map((v) => `"${v}"`).join(','))
-        .join('\n');
+    const csvContent = [headers, ...rows].map(e => e.map(v => `"${v}"`).join(',')).join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `hasil_assessment_${new Date().toISOString().slice(0,10)}.csv`;
+    link.download = `hasil_assessment_${new Date().toISOString().slice(0, 10)}.csv`;
     link.click();
   };
 
@@ -112,29 +109,33 @@ const Result: React.FC = () => {
 
         {/* Filter Form */}
         <form
-          onSubmit={(e) => {
+          onSubmit={e => {
             e.preventDefault();
             fetchAssessments();
           }}
           className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8"
         >
           <div>
-            <label htmlFor="nik" className="block text-sm font-medium text-gray-700">NIK</label>
+            <label htmlFor="nik" className="block text-sm font-medium text-gray-700">
+              NIK
+            </label>
             <input
               id="nik"
               type="text"
               value={filters.nik}
-              onChange={(e) => setFilters({ ...filters, nik: e.target.value })}
+              onChange={e => setFilters({ ...filters, nik: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder=""
             />
           </div>
           <div>
-            <label htmlFor="style" className="block text-sm font-medium text-gray-700">Gaya Kepemimpinan</label>
+            <label htmlFor="style" className="block text-sm font-medium text-gray-700">
+              Gaya Kepemimpinan
+            </label>
             <select
               id="style"
               value={filters.style}
-              onChange={(e) => setFilters({ ...filters, style: e.target.value })}
+              onChange={e => setFilters({ ...filters, style: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             >
               {leadershipStyles.map(({ value, label }) => (
@@ -145,22 +146,26 @@ const Result: React.FC = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Tanggal Mulai</label>
+            <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">
+              Tanggal Mulai
+            </label>
             <input
               id="startDate"
               type="date"
               value={filters.startDate}
-              onChange={(e) => setFilters({ ...filters, startDate: e.target.value })}
+              onChange={e => setFilters({ ...filters, startDate: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
           <div>
-            <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">Tanggal Akhir</label>
+            <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">
+              Tanggal Akhir
+            </label>
             <input
               id="endDate"
               type="date"
               value={filters.endDate}
-              onChange={(e) => setFilters({ ...filters, endDate: e.target.value })}
+              onChange={e => setFilters({ ...filters, endDate: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -178,7 +183,15 @@ const Result: React.FC = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50 sticky top-0 z-10">
                 <tr>
-                  {['NIK', 'Nama', 'Unit Kerja', 'Tanggal', 'Gaya Kepemimpinan', 'Skor', 'Deskripsi'].map((header) => (
+                  {[
+                    'NIK',
+                    'Nama',
+                    'Unit Kerja',
+                    'Tanggal',
+                    'Gaya Kepemimpinan',
+                    'Skor',
+                    'Deskripsi',
+                  ].map(header => (
                     <th
                       key={header}
                       className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
@@ -189,13 +202,21 @@ const Result: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {assessments.map((a) => (
+                {assessments.map(a => (
                   <tr key={`${a.nik}-${a.created_at}`}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{a.nik}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {a.nik}
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{a.nama}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.unit_kerja}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                      {new Date(a.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                      {a.unit_kerja}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      {new Date(a.created_at).toLocaleDateString('id-ID', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                      })}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
@@ -212,7 +233,8 @@ const Result: React.FC = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                      Telling: {a.result.telling} | Selling: {a.result.selling} | Participating: {a.result.participating} | Delegating: {a.result.delegating}
+                      Telling: {a.result.telling} | Selling: {a.result.selling} | Participating:{' '}
+                      {a.result.participating} | Delegating: {a.result.delegating}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-700 whitespace-pre-line">
                       {getStyleDescription(a.leadership_style)}

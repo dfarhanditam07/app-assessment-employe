@@ -6,8 +6,8 @@ export const questions = [
       A: 'Tekankan pentingnya mengikuti prosedur dan menyelesaikan tugas dengan baik.',
       B: 'Sediakan waktu jika tim ingin bicara, tapi jangan memaksa.',
       C: 'Ajak bicara untuk cari tahu masalahnya, lalu tetapkan target bersama.',
-      D: 'Biarkan saja, jangan terlibat dulu.'
-    }
+      D: 'Biarkan saja, jangan terlibat dulu.',
+    },
   },
   {
     id: 2,
@@ -16,8 +16,8 @@ export const questions = [
       A: 'Tunjukkan apresiasi agar tim merasa dihargai dan dilibatkan.',
       B: 'Tekankan kembali pentingnya target dan tenggat waktu.',
       C: 'Biarkan saja berjalan seperti biasa tanpa tindakan tambahan.',
-      D: 'Tetap jaga komunikasi baik dan ingatkan tim soal tanggung jawab kerja.'
-    }
+      D: 'Tetap jaga komunikasi baik dan ingatkan tim soal tanggung jawab kerja.',
+    },
   },
   {
     id: 3,
@@ -26,8 +26,8 @@ export const questions = [
       A: 'Ambil tindakan cepat dan langsung arahkan ulang.',
       B: 'Dorong tim menyelesaikan masalahnya sendiri sambil Anda beri dukungan.',
       C: 'Ajak tim duduk bersama dan selesaikan masalah bareng-bareng.',
-      D: 'Biarkan tim coba menyelesaikan masalahnya sendiri.'
-    }
+      D: 'Biarkan tim coba menyelesaikan masalahnya sendiri.',
+    },
   },
   {
     id: 4,
@@ -36,8 +36,8 @@ export const questions = [
       A: 'Umumkan rencana perubahan dan pantau pelaksanaannya secara ketat.',
       B: 'Libatkan tim untuk menyusun rencana, tapi jangan terlalu mengarahkan.',
       C: 'Dengarkan masukan tim, tapi Anda tetap yang menentukan arah akhir.',
-      D: 'Biarkan tim membuat keputusan dan mengatur sendiri arah perubahan.'
-    }
+      D: 'Biarkan tim membuat keputusan dan mengatur sendiri arah perubahan.',
+    },
   },
   {
     id: 5,
@@ -46,8 +46,8 @@ export const questions = [
       A: 'Biarkan tim menentukan arah kerjanya sendiri.',
       B: 'Gunakan masukan tim, tapi pastikan target tetap tercapai.',
       C: 'Jelaskan ulang peran masing-masing dan awasi lebih ketat.',
-      D: 'Libatkan tim dalam mendefinisikan tugas, tapi jangan terlalu mendominasi.'
-    }
+      D: 'Libatkan tim dalam mendefinisikan tugas, tapi jangan terlalu mendominasi.',
+    },
   },
   {
     id: 6,
@@ -56,8 +56,8 @@ export const questions = [
       A: 'Ajak tim berdiskusi dalam pengambilan keputusan sambil tetap memantau target.',
       B: 'Tidak perlu ikut campur dulu, biarkan berjalan.',
       C: 'Bangun suasana positif agar tim merasa dihargai dan dilibatkan.',
-      D: 'Fokus pada penyelesaian tugas dan disiplin kerja.'
-    }
+      D: 'Fokus pada penyelesaian tugas dan disiplin kerja.',
+    },
   },
   {
     id: 7,
@@ -66,8 +66,8 @@ export const questions = [
       A: 'Jelaskan rencana perubahan dan awasi dengan ketat.',
       B: 'Susun rencana bersama tim, dan biarkan tim mengatur pelaksanaannya.',
       C: 'Terima usulan tim, tapi tetap Anda yang mengatur pelaksanaannya.',
-      D: 'Ajak diskusi dan beri dukungan, tapi jangan terlalu mengarahkan.'
-    }
+      D: 'Ajak diskusi dan beri dukungan, tapi jangan terlalu mengarahkan.',
+    },
   },
   {
     id: 8,
@@ -76,8 +76,8 @@ export const questions = [
       A: 'Libatkan tim dalam menyusun arah tim, tapi jangan memaksa.',
       B: 'Susun ulang tujuan tim dan mulai awasi secara lebih aktif.',
       C: 'Biarkan tim tetap bekerja sendiri tanpa campur tangan.',
-      D: 'Diskusikan bersama lalu Anda ambil langkah yang diperlukan.'
-    }
+      D: 'Diskusikan bersama lalu Anda ambil langkah yang diperlukan.',
+    },
   },
   {
     id: 9,
@@ -86,8 +86,8 @@ export const questions = [
       A: 'Libatkan tim menyusun arah baru, tapi jangan terlalu menekan.',
       B: 'Tegaskan kembali tujuan kelompok dan pantau ketat pelaksanaannya.',
       C: 'Biarkan tim menyelesaikan masalahnya sendiri dulu.',
-      D: 'Gunakan masukan tim, tapi pastikan target tetap tercapai.'
-    }
+      D: 'Gunakan masukan tim, tapi pastikan target tetap tercapai.',
+    },
   },
   {
     id: 10,
@@ -96,8 +96,8 @@ export const questions = [
       A: 'Anda saja yang menetapkan peran baru dan pantau pelaksanaannya.',
       B: 'Ajak tim menyusun ulang peran dan standar, tapi Anda tidak perlu memimpin langsung.',
       C: 'Dengarkan saran tim, tapi pastikan tanggung jawab baru dijalankan.',
-      D: 'Hindari konflik, biarkan saja tanpa perubahan.'
-    }
+      D: 'Hindari konflik, biarkan saja tanpa perubahan.',
+    },
   },
   {
     id: 11,
@@ -106,8 +106,8 @@ export const questions = [
       A: 'Buat struktur kerja yang lebih jelas agar lebih terarah.',
       B: 'Libatkan tim dalam pengambilan keputusan dan beri apresiasi.',
       C: 'Evaluasi kinerja sebelumnya dan kaji apakah perlu pendekatan baru.',
-      D: 'Biarkan saja seperti sebelumnya, tidak perlu ikut campur.'
-    }
+      D: 'Biarkan saja seperti sebelumnya, tidak perlu ikut campur.',
+    },
   },
   {
     id: 12,
@@ -116,7 +116,7 @@ export const questions = [
       A: 'Ambil alih dan perbaiki situasi secara tegas dan cepat.',
       B: 'Diskusikan masalah dengan tim sambil terus memberi dukungan.',
       C: 'Uji solusi Anda bersama tim dan lihat apakah perlu cara kerja baru.',
-      D: 'Biarkan tim menyelesaikannya sendiri.'
-    }
-  }
+      D: 'Biarkan tim menyelesaikannya sendiri.',
+    },
+  },
 ];

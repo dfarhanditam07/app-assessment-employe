@@ -21,7 +21,7 @@ interface AssessmentQuestionProps {
 const AssessmentQuestion: React.FC<AssessmentQuestionProps> = ({
   question,
   onAnswer,
-  selectedAnswer
+  selectedAnswer,
 }) => {
   return (
     <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition-all hover:shadow-xl">
@@ -37,18 +37,17 @@ const AssessmentQuestion: React.FC<AssessmentQuestionProps> = ({
               key={key}
               onClick={() => onAnswer(key as 'A' | 'B' | 'C' | 'D')}
               className={`flex items-center justify-between w-full px-5 py-4 rounded-xl border text-left transition-all
-                ${isSelected 
-                  ? 'bg-blue-100 border-blue-500 text-blue-800 shadow-sm'
-                  : 'bg-white border-gray-300 hover:bg-gray-50 hover:border-blue-300 text-gray-700'
+                ${
+                  isSelected
+                    ? 'bg-blue-100 border-blue-500 text-blue-800 shadow-sm'
+                    : 'bg-white border-gray-300 hover:bg-gray-50 hover:border-blue-300 text-gray-700'
                 }`}
             >
               <div className="flex items-start gap-2">
                 <span className="font-bold">{key}.</span>
                 <span>{value}</span>
               </div>
-              {isSelected && (
-                <CheckCircle className="text-blue-600" size={20} />
-              )}
+              {isSelected && <CheckCircle className="text-blue-600" size={20} />}
             </button>
           );
         })}

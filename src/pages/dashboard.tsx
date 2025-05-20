@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer, PieChart, Pie, Cell
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
 } from 'recharts';
 
 interface Statistics {
@@ -19,7 +28,15 @@ interface Statistics {
 
 const COLORS = ['#4F46E5', '#10B981', '#F59E0B', '#EF4444'];
 
-const InfoBox = ({ title, value, color }: { title: string; value: string | number; color: string }) => (
+const InfoBox = ({
+  title,
+  value,
+  color,
+}: {
+  title: string;
+  value: string | number;
+  color: string;
+}) => (
   <div className="bg-white rounded-xl shadow-md p-6">
     <h3 className="text-lg font-semibold text-gray-700">{title}</h3>
     <p className={`mt-2 text-3xl font-bold ${color}`}>{value}</p>
@@ -47,31 +64,38 @@ const Dashboard: React.FC = () => {
     fetchStatistics();
   }, []);
 
-  if (loading) return (
-    <Layout>
-      <div className="flex items-center justify-center h-64 text-xl text-gray-600">Memuat data...</div>
-    </Layout>
-  );
+  if (loading)
+    return (
+      <Layout>
+        <div className="flex items-center justify-center h-64 text-xl text-gray-600">
+          Memuat data...
+        </div>
+      </Layout>
+    );
 
-  if (error) return (
-    <Layout>
-      <div className="flex items-center justify-center h-64 text-xl text-red-500">{error}</div>
-    </Layout>
-  );
+  if (error)
+    return (
+      <Layout>
+        <div className="flex items-center justify-center h-64 text-xl text-red-500">{error}</div>
+      </Layout>
+    );
 
   if (!statistics) return null;
 
   const { totalAssessments, averageScores, styleDistribution, assessmentsByDate } = statistics;
 
   const avgScore = Math.round(
-    (averageScores.avgTelling + averageScores.avgSelling +
-      averageScores.avgParticipating + averageScores.avgDelegating) / 4
+    (averageScores.avgTelling +
+      averageScores.avgSelling +
+      averageScores.avgParticipating +
+      averageScores.avgDelegating) /
+      4
   );
-  
+
   const dominantStyle =
     styleDistribution.length > 0
       ? styleDistribution.reduce((a, b) => (a.count > b.count ? a : b))._id
-      : '-';  
+      : '-';
 
   return (
     <Layout>

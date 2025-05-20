@@ -23,11 +23,11 @@ export default function Home() {
             className="bg-white shadow-2xl rounded-2xl p-10"
           >
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-extrabold text-blue-700">
-                Selamat Datang 👋
-              </h1>
+              <h1 className="text-4xl font-extrabold text-blue-700">Selamat Datang 👋</h1>
               <p className="text-lg text-gray-600 mt-2">
-                Layanan Asesmen <span className="text-blue-600 font-semibold">Situational Leadership</span> PT. Surveyor Indonesia
+                Layanan Asesmen{' '}
+                <span className="text-blue-600 font-semibold">Situational Leadership</span> PT.
+                Surveyor Indonesia
               </p>
             </div>
 

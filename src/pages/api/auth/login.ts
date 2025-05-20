@@ -46,13 +46,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       sameSite: 'strict' as const,
       maxAge: 60 * 60 * 24,
       path: '/',
-    };    
+    };
 
     res.setHeader('Set-Cookie', [
       serialize('token', token, cookieOptions),
       serialize('role', user.role, cookieOptions),
     ]);
-    
 
     return res.status(200).json({ message: 'Login berhasil', user: payload });
   } catch (error) {

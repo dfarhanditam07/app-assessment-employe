@@ -10,17 +10,17 @@ if (!uri) {
 
 async function initDb() {
   const client = new MongoClient(uri as string);
-  
+
   try {
     await client.connect();
     console.log('Connected to MongoDB');
 
     const db = client.db('situational_leadership');
-    
+
     // Buat collection users jika belum ada
     const collections = await db.listCollections().toArray();
     const collectionNames = collections.map(c => c.name);
-    
+
     if (!collectionNames.includes('users')) {
       await db.createCollection('users');
       console.log('Created users collection');
@@ -36,7 +36,7 @@ async function initDb() {
       password: 'admin123', // Dalam produksi, password harus di-hash
       nama: 'Administrator',
       role: 'admin',
-      unit_kerja: 'IT'
+      unit_kerja: 'IT',
     };
 
     try {
@@ -58,4 +58,4 @@ async function initDb() {
   }
 }
 
-initDb(); 
+initDb();

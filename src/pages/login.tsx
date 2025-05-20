@@ -21,7 +21,7 @@ export default function Login() {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       const data = await res.json();
@@ -56,9 +56,7 @@ export default function Login() {
           >
             <div className="flex flex-col items-center mb-6">
               <img src="/images/logo.png" alt="Logo" className="w-16 h-16 mb-2" />
-              <h2 className="text-2xl font-bold text-blue-800 text-center">
-                Login
-              </h2>
+              <h2 className="text-2xl font-bold text-blue-800 text-center">Login</h2>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -74,7 +72,7 @@ export default function Login() {
                   className="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-800"
                   placeholder="Masukkan NIK"
                   value={formData.nik}
-                  onChange={(e) => setFormData({ ...formData, nik: e.target.value })}
+                  onChange={e => setFormData({ ...formData, nik: e.target.value })}
                 />
               </div>
 
@@ -90,13 +88,11 @@ export default function Login() {
                   className="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-800"
                   placeholder="Masukkan password"
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={e => setFormData({ ...formData, password: e.target.value })}
                 />
               </div>
 
-              {error && (
-                <div className="text-sm text-red-600 text-center">{error}</div>
-              )}
+              {error && <div className="text-sm text-red-600 text-center">{error}</div>}
 
               <button
                 type="submit"

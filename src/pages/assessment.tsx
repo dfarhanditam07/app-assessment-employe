@@ -77,10 +77,10 @@ export default function AssessmentPage() {
             selling: result.selling,
             participating: result.participating,
             delegating: result.delegating,
-            dominantStyle: result.dominantStyle
+            dominantStyle: result.dominantStyle,
           },
           leadership_style: capitalize(result.dominantStyle),
-          created_at: new Date()
+          created_at: new Date(),
         }),
       });
 

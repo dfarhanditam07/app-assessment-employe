@@ -35,8 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           query.created_at = {};
           if (startDate && typeof startDate === 'string')
             query.created_at.$gte = new Date(startDate);
-          if (endDate && typeof endDate === 'string')
-            query.created_at.$lte = new Date(endDate);
+          if (endDate && typeof endDate === 'string') query.created_at.$lte = new Date(endDate);
 
           if (Object.keys(query.created_at).length === 0) delete query.created_at;
         }
@@ -62,18 +61,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         // Validasi result
-        if (!body.result || 
-            typeof body.result.telling !== 'number' ||
-            typeof body.result.selling !== 'number' ||
-            typeof body.result.participating !== 'number' ||
-            typeof body.result.delegating !== 'number') {
+        if (
+          !body.result ||
+          typeof body.result.telling !== 'number' ||
+          typeof body.result.selling !== 'number' ||
+          typeof body.result.participating !== 'number' ||
+          typeof body.result.delegating !== 'number'
+        ) {
           console.log('Invalid result:', body.result);
           return res.status(400).json({ error: 'Data hasil tidak valid' });
         }
 
         // Validasi leadership style
-        if (!body.leadership_style || 
-            !['Telling', 'Selling', 'Participating', 'Delegating'].includes(body.leadership_style)) {
+        if (
+          !body.leadership_style ||
+          !['Telling', 'Selling', 'Participating', 'Delegating'].includes(body.leadership_style)
+        ) {
           console.log('Invalid leadership style:', body.leadership_style);
           return res.status(400).json({ error: 'Gaya kepemimpinan tidak valid' });
         }
@@ -88,7 +91,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             selling: body.result.selling,
             participating: body.result.participating,
             delegating: body.result.delegating,
-            dominantStyle: body.result.dominantStyle || body.leadership_style
+            dominantStyle: body.result.dominantStyle || body.leadership_style,
           },
           leadership_style: body.leadership_style,
           created_at: new Date(),

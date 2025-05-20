@@ -7,14 +7,13 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
   const router = useRouter();
   const { user } = useAuth();
 
-  const menuItems = user?.role === 'admin'
-    ? [
-        { href: '/dashboard', label: 'Dashboard', icon: <BarChart2 size={18} /> },
-        { href: '/result', label: 'Hasil Assessment', icon: <ClipboardList size={18} /> },
-      ]
-    : [
-        { href: '/', label: 'Information', icon: <ClipboardList size={18} /> },
-      ];
+  const menuItems =
+    user?.role === 'admin'
+      ? [
+          { href: '/dashboard', label: 'Dashboard', icon: <BarChart2 size={18} /> },
+          { href: '/result', label: 'Hasil Assessment', icon: <ClipboardList size={18} /> },
+        ]
+      : [{ href: '/', label: 'Information', icon: <ClipboardList size={18} /> }];
 
   return (
     <aside
@@ -23,7 +22,7 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
       } overflow-hidden md:block`}
     >
       <nav className="p-6 space-y-4">
-        {menuItems.map((item) => (
+        {menuItems.map(item => (
           <Link
             key={item.href}
             href={item.href}
