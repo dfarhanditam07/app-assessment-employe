@@ -48,8 +48,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       case 'POST': {
         const body = req.body as Partial<Assessment>;
-        console.log('Received assessment data:', body);
-
         // Validasi dasar
         if (!body.nik || !body.nama) {
           console.log('Missing required fields:', { nik: !body.nik, nama: !body.nama });

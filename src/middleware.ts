@@ -6,9 +6,6 @@ export function middleware(request: NextRequest) {
   const role = request.cookies.get('role')?.value;
   const { pathname } = request.nextUrl;
 
-  console.log('token:', token);
-  console.log('role:', role);
-  console.log('pathname:', pathname);
   // Jika belum login, wajib ke login dulu kecuali sudah di halaman login
   if (!token) {
     if (pathname !== '/login') {

@@ -25,7 +25,6 @@ export default function AssessmentPage() {
     // Hanya jalankan redirect jika loading sudah selesai dan user tidak ada
     if (!loading) {
       if (!user) {
-        console.log('User tidak ditemukan, redirect ke login');
         router.replace('/login');
       } else {
         // Tandai bahwa komponen sudah diinisialisasi dengan data user
