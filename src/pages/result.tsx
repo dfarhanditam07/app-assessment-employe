@@ -15,11 +15,11 @@ const getStyleDescription = (style: string) => {
     case 'Delegating':
       return `Pengikut: Kompetensi tinggi, komitmen tinggi / mampu dan mau atau termotivasi.\nPemimpin: Fokus tugas rendah, fokus hubungan rendah.\nKetika pengikut mampu dan termotivasi, pemimpin dapat menyerahkan tugas sepenuhnya kepada mereka, dan hanya perlu memantau dari jauh untuk memastikan semuanya berjalan sesuai rencana. Pengikut pada tingkat ini hampir tidak memerlukan dukungan atau pujian yang sering, meskipun pengakuan tetap akan dihargai.`;
     case 'Telling':
-      return 'Pengikut: Kompetensi rendah, komitmen tinggi. Pemimpin memberikan arahan penuh dan pengawasan ketat.';
+      return 'Pengikut: Kompetensi rendah, komitmen tinggi / belum mampu tapi termotivasi.\nPemimpin: Fokus tugas tinggi, fokus hubungan rendah.\nKarakteristik: Pemimpin memberi instruksi yang sangat jelas, mengarahkan langkah demi langkah, dan mengawasi secara ketat karena pengikut belum punya kemampuan atau pengalaman yang cukup. Pemimpin harus tegas dan mengontrol agar tugas dapat diselesaikan dengan benar.';
     case 'Selling':
-      return 'Pengikut: Kompetensi sedang, komitmen bervariasi. Pemimpin memberikan arahan dan dukungan.';
+      return 'Pengikut: Kompetensi rendah, komitmen rendah / belum mampu dan belum termotivasi.\nPemimpin: Fokus tugas tinggi, fokus hubungan tinggi.\nKarakteristik: Pemimpin masih harus mengarahkan secara jelas, tapi juga memberikan dukungan emosional dan motivasi untuk meningkatkan semangat dan keterampilan pengikut. Pemimpin menjelaskan mengapa tugas itu penting dan mengajak berdiskusi untuk meningkatkan komitmen.';
     case 'Participating':
-      return 'Pengikut: Kompetensi tinggi, komitmen rendah. Pemimpin memberikan dukungan dan membagi pengambilan keputusan.';
+      return 'Pengikut: Kompetensi tinggi, komitmen rendah / mampu tapi kurang termotivasi.\nPemimpin: Fokus tugas rendah, fokus hubungan tinggi.\nKarakteristik: Pemimpin mengurangi arahan teknis tapi lebih banyak mendukung secara emosional dan berkolaborasi dengan pengikut. Pemimpin membantu mengatasi hambatan motivasi dan mendengarkan masukan pengikut agar mereka lebih bersemangat.';
     default:
       return '-';
   }

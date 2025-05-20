@@ -46,8 +46,8 @@ export default function AssessmentPage() {
     const count = { telling: 0, selling: 0, participating: 0, delegating: 0 };
     answers.forEach(({ answer }) => {
       if (answer === 'A') count.telling++;
-      else if (answer === 'B') count.selling++;
-      else if (answer === 'C') count.participating++;
+      else if (answer === 'B') count.participating++;
+      else if (answer === 'C') count.selling++;
       else if (answer === 'D') count.delegating++;
     });
 
