@@ -11,12 +11,10 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const router = useRouter();
   const isLoginPage = router.pathname === '/login';
-  const isHomePage = router.pathname === '/';
 
   if (isLoginPage) {
     return (
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-white text-gray-800">
-        <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
       </div>

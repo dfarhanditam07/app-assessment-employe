@@ -75,8 +75,8 @@ const Dashboard: React.FC = () => {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-6 py-8 text-gray-800">
-        <h1 className="text-3xl font-bold mb-8 text-indigo-700">📊 Dashboard Assessment</h1>
+      <div className="max-w-7xl mx-auto px-6 py-8 text-gray-800 bg-gradient-to-br from-indigo-50 to-white">
+        <h1 className="text-3xl font-bold mb-8 text-indigo-700">Dashboard Assessment</h1>
 
         {/* Info Boxes */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">

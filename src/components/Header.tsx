@@ -9,7 +9,9 @@ export default function Header() {
 
   return (
     <header className="flex justify-between items-center bg-blue-600 px-6 py-4 text-white shadow-md">
-      <Link href="/" className="text-2xl font-bold">PT. XYZ</Link>
+      <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
+        PT. Surveyor Indonesia
+      </Link>
       {user ? (
         <div className="flex items-center gap-4">
           <span className="text-sm">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Layout from '../components/Layout'; // Pastikan Layout sudah ada
-import { Assessment } from '../models/Assessment'; // Sesuaikan model data jika perlu
+import Layout from '../components/Layout';
+import { Assessment } from '../models/Assessment';
 
 const leadershipStyles = [
   { value: '', label: 'Semua' },
@@ -9,6 +9,21 @@ const leadershipStyles = [
   { value: 'Participating', label: 'Participating' },
   { value: 'Delegating', label: 'Delegating' },
 ];
+
+const getStyleDescription = (style: string) => {
+  switch (style) {
+    case 'Delegating':
+      return `Pengikut: Kompetensi tinggi, komitmen tinggi / mampu dan mau atau termotivasi.\nPemimpin: Fokus tugas rendah, fokus hubungan rendah.\nKetika pengikut mampu dan termotivasi, pemimpin dapat menyerahkan tugas sepenuhnya kepada mereka, dan hanya perlu memantau dari jauh untuk memastikan semuanya berjalan sesuai rencana. Pengikut pada tingkat ini hampir tidak memerlukan dukungan atau pujian yang sering, meskipun pengakuan tetap akan dihargai.`;
+    case 'Telling':
+      return 'Pengikut: Kompetensi rendah, komitmen tinggi. Pemimpin memberikan arahan penuh dan pengawasan ketat.';
+    case 'Selling':
+      return 'Pengikut: Kompetensi sedang, komitmen bervariasi. Pemimpin memberikan arahan dan dukungan.';
+    case 'Participating':
+      return 'Pengikut: Kompetensi tinggi, komitmen rendah. Pemimpin memberikan dukungan dan membagi pengambilan keputusan.';
+    default:
+      return '-';
+  }
+};
 
 const Result: React.FC = () => {
   const [assessments, setAssessments] = useState<Assessment[]>([]);
@@ -111,7 +126,7 @@ const Result: React.FC = () => {
               value={filters.nik}
               onChange={(e) => setFilters({ ...filters, nik: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Masukkan NIK"
+              placeholder=""
             />
           </div>
           <div>
@@ -159,11 +174,11 @@ const Result: React.FC = () => {
         ) : assessments.length === 0 ? (
           <p className="text-center text-gray-500 italic">Tidak ada data yang sesuai filter.</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-gray-200 shadow">
+          <div className="overflow-x-auto overflow-y-auto rounded-lg border border-gray-200 shadow">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-gray-50 sticky top-0 z-10">
                 <tr>
-                  {['NIK', 'Nama', 'Unit Kerja', 'Tanggal', 'Gaya Kepemimpinan', 'Skor'].map((header) => (
+                  {['NIK', 'Nama', 'Unit Kerja', 'Tanggal', 'Gaya Kepemimpinan', 'Skor', 'Deskripsi'].map((header) => (
                     <th
                       key={header}
                       className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
@@ -180,7 +195,7 @@ const Result: React.FC = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{a.nama}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.unit_kerja}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                      {new Date(a.created_at).toLocaleDateString()}
+                      {new Date(a.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
@@ -197,7 +212,10 @@ const Result: React.FC = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                      T: {a.result.telling}, S: {a.result.selling}, P: {a.result.participating}, D: {a.result.delegating}
+                      Telling: {a.result.telling} | Selling: {a.result.selling} | Participating: {a.result.participating} | Delegating: {a.result.delegating}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-700 whitespace-pre-line">
+                      {getStyleDescription(a.leadership_style)}
                     </td>
                   </tr>
                 ))}
