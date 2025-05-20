@@ -78,14 +78,23 @@ const Result: React.FC = () => {
   const handleExportCSV = () => {
     if (assessments.length === 0) return;
 
-    const headers = ['NIK', 'Nama', 'Unit Kerja', 'Tanggal', 'Gaya Kepemimpinan', 'Skor'];
+    const headers = [
+      'NIK',
+      'Nama',
+      'Unit Kerja',
+      'Tanggal',
+      'Gaya Kepemimpinan',
+      'Skor',
+      'Deskripsi',
+    ];
     const rows = assessments.map(a => [
       a.nik,
       a.nama,
       a.unit_kerja,
       new Date(a.created_at).toLocaleDateString(),
       a.leadership_style,
-      `T:${a.result.telling} S:${a.result.selling} P:${a.result.participating} D:${a.result.delegating}`,
+      `Telling: ${a.result.telling}\nSelling: ${a.result.selling}\nParticipating: ${a.result.participating}\nDelegating: ${a.result.delegating}`,
+      getStyleDescription(a.leadership_style),
     ]);
 
     const csvContent = [headers, ...rows].map(e => e.map(v => `"${v}"`).join(',')).join('\n');
