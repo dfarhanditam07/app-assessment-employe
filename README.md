@@ -15,14 +15,17 @@ You can try the deployed app here: [https://app-assessment-employe.vercel.app/](
 ## 🛠️ Getting Started (Local Setup)
 
 ### 1. Clone the repository
+```bash
 git clone https://github.com/your-repo/app-assessment-employe.git
 ```
 
 ### 2. Navigate to the project directory
+```bash
 cd app-assessment-employe
 ```
 
 ### 3. Install dependencies
+```bash
 npm install
 ```
 
@@ -31,10 +34,12 @@ npm install
 
 ### 5. Initialize the database (optional)
 - If you need to seed the database, run:
+```bash
 npm run init-db
 ```
 
 ### 6. Run the development server
+```bash
 npm run dev
 ```
 The app will be available at [http://localhost:3000](http://localhost:3000).
