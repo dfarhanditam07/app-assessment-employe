@@ -87,7 +87,7 @@ export default function AssessmentPage() {
         const error = await res.json();
         throw new Error(error.error || 'Failed to save assessment');
       }
-      router.push('/result');
+      router.push('/');
     } catch (err) {
       console.error(err);
       alert('Gagal menyimpan data. Coba lagi.');
