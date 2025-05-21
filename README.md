@@ -1,54 +1,72 @@
-## System Overview
+# Employee Assessment Web Application
 
-This project is a web application built using Next.js, designed to facilitate employee assessments. It includes features for managing assessments, viewing results, and user authentication.
+A web application built with Next.js to facilitate employee assessments, including features for managing questions, submitting answers, viewing results, and secure authentication.
 
-## Getting Started
+## 🚀 Live Demo
 
-To clone the repository and set up the project locally, follow these steps:
+You can try the deployed app here: [https://app-assessment-employe.vercel.app/](https://app-assessment-employe.vercel.app/)
 
-1. Clone the repository:
+## 📦 Features
+- Employee login and authentication
+- Admin dashboard for managing assessments
+- Take and submit assessments
+- View assessment results
+- Responsive UI with Tailwind CSS
 
-```bash
+## 🛠️ Getting Started (Local Setup)
+
+1. **Clone the repository:**
+   ```bash
 git clone https://github.com/your-repo/app-assessment-employe.git
 ```
-
-2. Navigate into the project directory:
-
-```bash
+2. **Navigate to the project directory:**
+   ```bash
 cd app-assessment-employe
 ```
-
-3. Install the dependencies:
-
-```bash
+3. **Install dependencies:**
+   ```bash
 npm install
 ```
-
-4. Run the development server:
-
-```bash
+4. **Set up environment variables:**
+   - Copy `.env.local.example` to `.env.local` (if available) and fill in the required values (e.g., MongoDB connection string).
+5. **Initialize the database (optional):**
+   - If you need to seed the database, run:
+   ```bash
+npm run init-db
+```
+6. **Run the development server:**
+   ```bash
 npm run dev
 ```
+   The app will be available at [http://localhost:3000](http://localhost:3000).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 👤 Default Accounts
 
-## User Accounts
+### Admin
+- **NIK:** 3275110708020015
+- **Password:** admin123
 
-### Admin Account
+### User
+- **NIK:** 3201051601234569
+- **Password:** Dimas123
 
-- NIK: "3275110708020015"
-- Password: "admin123"
+## 📚 Folder Structure
+- `src/pages/` – Next.js pages (routes)
+- `src/components/` – Reusable React components
+- `src/context/` – React context for authentication
+- `src/data/` – Static data (e.g., questions)
+- `src/models/` – Database models (MongoDB)
+- `src/lib/` – Utility libraries (e.g., MongoDB connection)
+- `public/` – Static assets (images, icons)
 
-### User Account
+## 📝 Technologies Used
+- Next.js
+- React
+- MongoDB
+- Tailwind CSS
 
-- NIK: "3201051601234569"
-- Password: "Dimas123"
+## 📄 License
+This project is licensed under the MIT License.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🙏 Contributions
+Feel free to open issues or submit pull requests to improve this project!
